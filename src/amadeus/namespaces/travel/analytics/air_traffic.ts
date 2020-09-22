@@ -1,6 +1,6 @@
-import Traveled from './air_traffic/traveled.js';
-import Booked from './air_traffic/booked.js';
-import BusiestPeriod from './air_traffic/busiest_period.js';
+import Traveled from './air_traffic/traveled';
+import Booked from './air_traffic/booked';
+import BusiestPeriod from './air_traffic/busiest_period';
 
 /**
  * A namespaced client for the
@@ -21,7 +21,7 @@ class AirTraffic {
   client: any;
   traveled: any;
   constructor(client: any) {
-    this.client   = client;
+    this.client = client;
     this.traveled = new Traveled(client);
     this.booked = new Booked(client);
     this.busiestPeriod = new BusiestPeriod(client);

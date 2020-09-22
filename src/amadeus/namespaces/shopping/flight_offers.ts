@@ -1,5 +1,5 @@
-import FlightChoicePrediction from './flight_offers/flight_choice_prediction.js';
-import Pricing from './flight_offers/pricing.js';
+import FlightChoicePrediction from './flight_offers/flight_choice_prediction';
+import Pricing from './flight_offers/pricing';
 
 /**
  * A namespaced client for the
