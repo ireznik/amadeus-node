@@ -15,7 +15,9 @@ import Files from './media/files';
  * @property {Files} files
  */
 class Media {
-  constructor(client) {
+  client: any;
+  files: any;
+  constructor(client: any) {
     this.client = client;
     this.files = new Files(client);
   }

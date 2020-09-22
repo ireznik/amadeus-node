@@ -16,7 +16,9 @@ import AirTraffic  from './analytics/air_traffic';
  * @protected
  */
 class Analytics {
-  constructor(client) {
+  airTraffic: any;
+  client: any;
+  constructor(client: any) {
     this.client        = client;
     this.airTraffic    = new AirTraffic(client);
   }

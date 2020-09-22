@@ -1,4 +1,5 @@
 import Response from './response';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'util' or its corresponding typ... Remove this comment to see the full error message
 import util     from 'util';
 
 import {
@@ -22,7 +23,10 @@ import {
  * @protected
  */
 class Listener {
-  constructor(request, emitter, client) {
+  client: any;
+  emitter: any;
+  request: any;
+  constructor(request: any, emitter: any, client: any) {
     this.request = request;
     this.emitter = emitter;
     this.client  = client;
@@ -40,7 +44,7 @@ class Listener {
    * @param  {Object} http_response a Node http response object
    * @protected
    */
-  onResponse(http_response) {
+  onResponse(http_response: any) {
     let response = new Response(http_response, this.request);
 
     http_response.on('data',  response.addChunk.bind(response));
@@ -58,7 +62,7 @@ class Listener {
    * @protected
    */
 
-  onError(http_response) {
+  onError(http_response: any) {
     let response = new Response(http_response, this.request);
     this.onNetworkError(response)();
   }
@@ -72,7 +76,7 @@ class Listener {
    *
    * @param  {Response} response
    */
-  onEnd(response) {
+  onEnd(response: any) {
     return () => {
       response.parse();
       if (response.success()) { this.onSuccess(response); }
@@ -86,7 +90,8 @@ class Listener {
    *
    * @param  {Response} response
    */
-  onSuccess(response) {
+  onSuccess(response: any) {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     this.log(response);
     this.emitter.emit('resolve', response);
   }
@@ -97,7 +102,7 @@ class Listener {
    *
    * @param  {Response} response
    */
-  onFail(response) {
+  onFail(response: any) {
     let Error = this.errorFor(response);
     let error = new Error(response);
     this.log(response, error);
@@ -111,7 +116,10 @@ class Listener {
    * @param {Response} reponse
    * @returns {ResponseError}
    */
-  errorFor({statusCode, parsed}) {
+  errorFor({
+    statusCode,
+    parsed
+  }: any) {
     let error = null;
     if (statusCode >= 500) { error = ServerError; }
     else if (statusCode == 401) { error = AuthenticationError; }
@@ -128,7 +136,7 @@ class Listener {
    *
    * @param  {Response} response
    */
-  onNetworkError(response) {
+  onNetworkError(response: any) {
     return () => {
       response.parse();
       let error = new NetworkError(response);
@@ -143,7 +151,7 @@ class Listener {
    * @param  {Response} response the response object to log
    * @private
    */
-  log(response, error) {
+  log(response: any, error: any) {
     if (this.client.debug()) {
       /* istanbul ignore next */
       this.client.logger.log(util.inspect(response, false, null));

@@ -16,7 +16,9 @@ import CheckinLinks from './urls/checkin_links';
  * @protected
  */
 class Urls {
-  constructor(client) {
+  checkinLinks: any;
+  client: any;
+  constructor(client: any) {
     this.client = client;
     this.checkinLinks = new CheckinLinks(client);
   }

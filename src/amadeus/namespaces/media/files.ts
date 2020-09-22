@@ -15,7 +15,9 @@ import GeneratedPhotos from './files/generated_photos';
  * @property {GeneratedPhotos} generatedPhotos
  */
 class Files {
-  constructor(client) {
+  client: any;
+  generatedPhotos: any;
+  constructor(client: any) {
     this.client = client;
     this.generatedPhotos = new GeneratedPhotos(client);
   }

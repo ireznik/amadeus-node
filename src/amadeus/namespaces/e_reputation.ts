@@ -15,7 +15,9 @@ import HotelSentiments    from './e_reputation/hotel_sentiments';
  * @property {hotelSentiments} hotel_sentiments
  */
 class EReputation {
-  constructor(client) {
+  client: any;
+  hotelSentiments: any;
+  constructor(client: any) {
     this.client             = client;
     this.hotelSentiments = new HotelSentiments(client);
   }

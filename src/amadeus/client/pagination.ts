@@ -5,7 +5,8 @@
  * @protected
  */
 class Pagination {
-  constructor(client) {
+  client: any;
+  constructor(client: any) {
     this.client = client;
   }
 
@@ -20,7 +21,7 @@ class Pagination {
    * @return {Promise.<Response,ResponseError>} a Bluebird Promise
    * @protected
    */
-  page(pageName, response) {
+  page(pageName: any, response: any) {
     let pageNumber = this.pageNumber(response, pageName);
 
     if (pageNumber) {
@@ -41,7 +42,7 @@ class Pagination {
    * @return {Promise.<Response,ResponseError>} a Bluebird Promise
    * @private
    */
-  call(request, pageNumber) {
+  call(request: any, pageNumber: any) {
     let params = request.params || {};
     params['page'] = params['page'] || {};
     params['page']['offset'] = pageNumber;
@@ -62,7 +63,7 @@ class Pagination {
    * @return {number}
    * @private
    */
-  pageNumber(response, pageName) {
+  pageNumber(response: any, pageName: any) {
     try {
       return response.result['meta']['links'][pageName].split('=').pop();
     } catch (TypeError) {
@@ -77,7 +78,8 @@ class Pagination {
    * @private
    */
   nullPromise() {
-    return new Promise(function(resolve) { resolve(null); });
+    // @ts-expect-error ts-migrate(2585) FIXME: 'Promise' only refers to a type, but is being used... Remove this comment to see the full error message
+    return new Promise(function(resolve: any) { resolve(null); });
   }
 }
 

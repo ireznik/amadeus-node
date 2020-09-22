@@ -15,7 +15,9 @@ import Predictions    from './airport/predictions';
  * @property {predictions} predictions
  */
 class Airport {
-  constructor(client) {
+  client: any;
+  predictions: any;
+  constructor(client: any) {
     this.client             = client;
     this.predictions = new Predictions(client);
   }

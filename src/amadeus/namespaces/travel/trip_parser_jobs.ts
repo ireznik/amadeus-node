@@ -15,7 +15,10 @@ import Result from './trip_parser_jobs/result';
  * @property {Result} result
  */
 class TripParserJobs {
-  constructor(client, jobId) {
+  _jobId: any;
+  client: any;
+  result: any;
+  constructor(client: any, jobId: any) {
     this.client = client;
     this._jobId = jobId;
     this.result = new Result(client, jobId);
@@ -62,7 +65,8 @@ class TripParserJobs {
    * Helper method to convert file contents in UTF-8 encoded string
    * into Base64 encoded string
    */
-  convertToJson(fileContentsInUTF8Format) {
+  convertToJson(fileContentsInUTF8Format: any) {
+    // @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'Buffer'. Do you need to install ... Remove this comment to see the full error message
     return (new Buffer(fileContentsInUTF8Format)).toString('base64');
   }
 }

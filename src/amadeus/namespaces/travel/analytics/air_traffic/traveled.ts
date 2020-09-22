@@ -12,7 +12,8 @@
  * @param {Client} client
  */
 class Traveled{
-  constructor(client) {
+  client: any;
+  constructor(client: any) {
     this.client = client;
   }
 

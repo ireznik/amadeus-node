@@ -16,13 +16,16 @@ import BusiestPeriod from './air_traffic/busiest_period.js';
  * @param {Client} client
  */
 class AirTraffic {
-  constructor(client) {
+  booked: any;
+  busiestPeriod: any;
+  client: any;
+  traveled: any;
+  constructor(client: any) {
     this.client   = client;
     this.traveled = new Traveled(client);
     this.booked = new Booked(client);
     this.busiestPeriod = new BusiestPeriod(client);
   }
-
 }
 
 export default AirTraffic;

@@ -17,7 +17,10 @@ import FlightDelay from './predictions/flight_delay';
  * @property {FlightDelay} flightDelay
  */
 class Predictions {
-  constructor(client) {
+  client: any;
+  flightDelay: any;
+  tripPurpose: any;
+  constructor(client: any) {
     this.client = client;
     this.tripPurpose = new TripPurpose(client);
     this.flightDelay = new FlightDelay(client);

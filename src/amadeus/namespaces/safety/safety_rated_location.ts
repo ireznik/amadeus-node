@@ -12,7 +12,9 @@
  * @param {Client} client
  */
 class SafetyRatedLocation {
-  constructor(client, locationId) {
+  client: any;
+  locationId: any;
+  constructor(client: any, locationId: any) {
     this.client = client;
     this.locationId = locationId;
   }

@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'events' or its corresponding t... Remove this comment to see the full error message
 import EventEmitter from 'events';
 
 // The number of seconds before the token expires, when
@@ -14,6 +15,8 @@ const TOKEN_BUFFER = 10;
   * @protected
   */
 class AccessToken {
+  accessToken: any;
+  expiresAt: any;
   constructor() {
     this.accessToken;
     this.expiresAt;
@@ -29,7 +32,7 @@ class AccessToken {
    * @return {Promise.<Response,ResponseError>} a Bluebird Promise
    * @protected
    */
-  bearerToken(client) {
+  bearerToken(client: any) {
     let emitter = new EventEmitter();
     let promise = this.promise(emitter);
     this.emitOrLoadAccessToken(client, emitter);
@@ -45,10 +48,11 @@ class AccessToken {
    * @return {Promise} a Bluebird promise
    * @private
    */
-  promise(emitter) {
-    return new Promise((resolve, reject) => {
-      emitter.on('resolve', response => resolve(response));
-      emitter.on('reject', error => reject(error));
+  promise(emitter: any) {
+    // @ts-expect-error ts-migrate(2585) FIXME: 'Promise' only refers to a type, but is being used... Remove this comment to see the full error message
+    return new Promise((resolve: any, reject: any) => {
+      emitter.on('resolve', (response: any) => resolve(response));
+      emitter.on('reject', (error: any) => reject(error));
     });
   }
 
@@ -61,7 +65,7 @@ class AccessToken {
    * @param  {type} emitter the EventEmitter used to emit the token
    * @private
    */
-  emitOrLoadAccessToken(client, emitter) {
+  emitOrLoadAccessToken(client: any, emitter: any) {
     if (this.needsLoadOrRefresh()) { this.loadAccessToken(client, emitter); }
     else { emitter.emit('resolve', this.accessToken); }
   }
@@ -86,15 +90,15 @@ class AccessToken {
    * @param  {type} emitter the EventEmitter used to emit the token
    * @private
    */
-  loadAccessToken(client, emitter) {
+  loadAccessToken(client: any, emitter: any) {
     client.unauthenticatedRequest('POST', '/v1/security/oauth2/token', {
       'grant_type' : 'client_credentials',
       'client_id' : client.clientId,
       'client_secret' : client.clientSecret
-    }).then((response) => {
+    }).then((response: any) => {
       this.storeAccessToken(response);
       this.emitOrLoadAccessToken(client, emitter);
-    }).catch((error) => {
+    }).catch((error: any) => {
       emitter.emit('reject', error);
     });
   }
@@ -105,7 +109,7 @@ class AccessToken {
    * @param  {Response} response the response object received from the client
    * @private
    */
-  storeAccessToken(response) {
+  storeAccessToken(response: any) {
     this.accessToken = response.result['access_token'];
     this.expiresAt = Date.now() + (response.result['expires_in'] * 1000);
   }

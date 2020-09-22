@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/qs` if it exists or add a ... Remove this comment to see the full error message
 import qs from 'qs';
 
 /**
@@ -22,7 +23,21 @@ import qs from 'qs';
  * @param {Object} options
  */
 class Request {
-  constructor(options) {
+  appId: any;
+  appVersion: any;
+  bearerToken: any;
+  clientVersion: any;
+  headers: any;
+  host: any;
+  languageVersion: any;
+  params: any;
+  path: any;
+  port: any;
+  queryPath: any;
+  scheme: any;
+  ssl: any;
+  verb: any;
+  constructor(options: any) {
     this.host            = options.host;
     this.port            = options.port;
     this.ssl             = options.ssl;

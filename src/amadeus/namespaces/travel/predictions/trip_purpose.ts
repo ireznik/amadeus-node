@@ -12,7 +12,8 @@
  * @param {Client} client
  */
 class TripPurpose {
-  constructor(client) {
+  client: any;
+  constructor(client: any) {
     this.client = client;
   }
 

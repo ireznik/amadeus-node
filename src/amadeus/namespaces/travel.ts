@@ -20,13 +20,16 @@ import TripParserJobs from './travel/trip_parser_jobs';
  * @protected
  */
 class Travel {
-  constructor(client) {
+  analytics: any;
+  client: any;
+  predictions: any;
+  constructor(client: any) {
     this.client    = client;
     this.analytics = new Analytics(client);
     this.predictions = new Predictions(client);
   }
 
-  tripParserJobs (jobId) {
+  tripParserJobs (jobId: any) {
     return new TripParserJobs(this.client, jobId);
   }
 }

@@ -58,145 +58,131 @@ import Schedule      from './amadeus/namespaces/schedule';
  * @property {number} version The version of this API client
  */
 class Amadeus {
-  constructor(params = {}) {
-    this.client = new Client(params);
-    this.version = this.client.version;
+ static location = {
+     airport: 'AIRPORT',
+     city: 'CITY',
+     any: 'AIRPORT,CITY'
+ };
 
-    this.referenceData  = new ReferenceData(this.client);
-    this.shopping       = new Shopping(this.client);
-    this.booking        = new Booking(this.client);
-    this.travel         = new Travel(this.client);
-    this.eReputation    = new EReputation(this.client);
-    this.media          = new Media(this.client);
-    this.airport        = new Airport(this.client);
-    this.pagination     = new Pagination(this.client);
-    this.safety         = new Safety(this.client);
-    this.schedule       = new Schedule(this.client);
-  }
+ static direction = {
+     arriving: 'ARRIVING',
+     departing: 'DEPARTING'
+ };
 
-  /**
-   * The previous page for the given response. Resolves to null if the page
-   * could not be found.
-   *
-   * ```js
-   * amadeus.referenceData.locations.get({
-   *   keyword: 'LON',
-   *   subType: 'AIRPORT,CITY',
-   *   page: { offset: 2 }
-   * }).then(function(response){
-   *   console.log(response);
-   *   return amadeus.previous(response);
-   * }).then(function(previousPage){
-   *   console.log(previousPage);
-   * });
-   * ```
-   *
-   * @param response the previous response for an API call
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
-   */
-  previous(response) { return this.pagination.page('previous', response); }
+ airport: any;
+ booking: any;
+ client: any;
+ eReputation: any;
+ media: any;
+ pagination: any;
+ referenceData: any;
+ safety: any;
+ schedule: any;
+ shopping: any;
+ travel: any;
+ version: any;
 
-  /**
-   * The next page for the given response. Resolves to null if the page could
-   * not be found.
-   *
-   * ```js
-   * amadeus.referenceData.locations.get({
-   *   keyword: 'LON',
-   *   subType: 'AIRPORT,CITY'
-   * }).then(function(response){
-   *   console.log(response);
-   *   return amadeus.next(response);
-   * }).then(function(nextPage){
-   *   console.log(nextPage);
-   * });
-   * ```
-   *
-   * @param response the previous response for an API call
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
-   */
-  next(response)     { return this.pagination.page('next', response); }
+ constructor(params = {}) {
+   this.client = new Client(params);
+   this.version = this.client.version;
 
-  /**
-   * The first page for the given response. Resolves to null if the page
-   * could not be found.
-   *
-   * ```js
-   * amadeus.referenceData.locations.get({
-   *   keyword: 'LON',
-   *   subType: 'AIRPORT,CITY',
-   *   page: { offset: 2 }
-   * }).then(function(response){
-   *   console.log(response);
-   *   return amadeus.first(response);
-   * }).then(function(firstPage){
-   *   console.log(firstPage);
-   * });
-   * ```
-   *
-   * @param response the previous response for an API call
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
-   */
-  first(response)    { return this.pagination.page('first', response); }
+   this.referenceData  = new ReferenceData(this.client);
+   this.shopping       = new Shopping(this.client);
+   this.booking        = new Booking(this.client);
+   this.travel         = new Travel(this.client);
+   this.eReputation    = new EReputation(this.client);
+   this.media          = new Media(this.client);
+   this.airport        = new Airport(this.client);
+   this.pagination     = new Pagination(this.client);
+   this.safety         = new Safety(this.client);
+   this.schedule       = new Schedule(this.client);
+ }
 
-  /**
-   * The last page for the given response. Resolves to null if the page
-   * could not be found.
-   *
-   * ```js
-   * amadeus.referenceData.locations.get({
-   *   keyword: 'LON',
-   *   subType: 'AIRPORT,CITY'
-   * }).then(function(response){
-   *   console.log(response);
-   *   return amadeus.last(response);
-   * }).then(function(lastPage){
-   *   console.log(lastPage);
-   * });
-   * ```
-   *
-   * @param response the previous response for an API call
-   * @return {Promise.<Response,ResponseError>} a Bluebird Promise
-   */
-  last(response)     { return this.pagination.page('last', response); }
+ /**
+  * The previous page for the given response. Resolves to null if the page
+  * could not be found.
+  *
+  * ```js
+  * amadeus.referenceData.locations.get({
+  *   keyword: 'LON',
+  *   subType: 'AIRPORT,CITY',
+  *   page: { offset: 2 }
+  * }).then(function(response){
+  *   console.log(response);
+  *   return amadeus.previous(response);
+  * }).then(function(previousPage){
+  *   console.log(previousPage);
+  * });
+  * ```
+  *
+  * @param response the previous response for an API call
+  * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+  */
+ previous(response: any) { return this.pagination.page('previous', response); }
+
+ /**
+  * The next page for the given response. Resolves to null if the page could
+  * not be found.
+  *
+  * ```js
+  * amadeus.referenceData.locations.get({
+  *   keyword: 'LON',
+  *   subType: 'AIRPORT,CITY'
+  * }).then(function(response){
+  *   console.log(response);
+  *   return amadeus.next(response);
+  * }).then(function(nextPage){
+  *   console.log(nextPage);
+  * });
+  * ```
+  *
+  * @param response the previous response for an API call
+  * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+  */
+ next(response: any)     { return this.pagination.page('next', response); }
+
+ /**
+  * The first page for the given response. Resolves to null if the page
+  * could not be found.
+  *
+  * ```js
+  * amadeus.referenceData.locations.get({
+  *   keyword: 'LON',
+  *   subType: 'AIRPORT,CITY',
+  *   page: { offset: 2 }
+  * }).then(function(response){
+  *   console.log(response);
+  *   return amadeus.first(response);
+  * }).then(function(firstPage){
+  *   console.log(firstPage);
+  * });
+  * ```
+  *
+  * @param response the previous response for an API call
+  * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+  */
+ first(response: any)    { return this.pagination.page('first', response); }
+
+ /**
+  * The last page for the given response. Resolves to null if the page
+  * could not be found.
+  *
+  * ```js
+  * amadeus.referenceData.locations.get({
+  *   keyword: 'LON',
+  *   subType: 'AIRPORT,CITY'
+  * }).then(function(response){
+  *   console.log(response);
+  *   return amadeus.last(response);
+  * }).then(function(lastPage){
+  *   console.log(lastPage);
+  * });
+  * ```
+  *
+  * @param response the previous response for an API call
+  * @return {Promise.<Response,ResponseError>} a Bluebird Promise
+  */
+ last(response: any)     { return this.pagination.page('last', response); }
 }
-
-
-/**
- * A handy list of location types, to be used in the locations API:
- *
- * ```js
- * amadeus.referenceData.location.get({
- *   keyword: 'lon',
- *   subType: Amadeus.location.any
- * });
- * ```
- *
- * Currently available are the types `.airport`, `.city`, and `.any`
- */
-Amadeus.location = {
-  airport: 'AIRPORT',
-  city: 'CITY',
-  any: 'AIRPORT,CITY'
-};
-
-/**
- * A handy list of direction types, to be used in the Flight Busiest Period API:
- *
- * ```js
- * amadeus.travel.analytics.airTraffic.busiestPeriod.get({
- *   cityCode: 'par',
- *   perdiod: 2015,
- *   direction: Amadeus.direction.arriving
- * });
- * ```
- *
- * Currently available are the types `.arriving` and `.departing`
- */
-
-Amadeus.direction = {
-  arriving: 'ARRIVING',
-  departing: 'DEPARTING'
-};
 
 export default Amadeus;

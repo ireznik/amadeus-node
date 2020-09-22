@@ -13,7 +13,9 @@
  * @property {number} offerId
  */
 class HotelOffer {
-  constructor(client, offerId) {
+  client: any;
+  offerId: any;
+  constructor(client: any, offerId: any) {
     this.client = client;
     this.offerId = offerId;
   }

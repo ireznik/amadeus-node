@@ -15,7 +15,10 @@ import Pricing from './flight_offers/pricing.js';
  * @param {Client} client
  */
 class FlightOffers {
-  constructor(client) {
+  client: any;
+  prediction: any;
+  pricing: any;
+  constructor(client: any) {
     this.client = client;
     this.prediction = new FlightChoicePrediction(client);
     this.pricing = new Pricing(client);

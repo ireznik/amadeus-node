@@ -15,7 +15,9 @@ import OnTime    from './predictions/on_time';
  * @property {predictions} OnTime
  */
 class Predictions {
-  constructor(client) {
+  client: any;
+  onTime: any;
+  constructor(client: any) {
     this.client = client;
     this.onTime = new OnTime(client);
   }

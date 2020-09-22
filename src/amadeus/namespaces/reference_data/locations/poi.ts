@@ -12,7 +12,9 @@
  * @param {Client} client
  */
 class PointOfInterest {
-  constructor(client, poiId) {
+  _poiId: any;
+  client: any;
+  constructor(client: any, poiId: any) {
     this.client = client;
     this._poiId = poiId;
   }

@@ -14,7 +14,9 @@ import BySquare from './points_of_interest/by-square';
  * @param {Client} client
  */
 class PointsOfInterest {
-  constructor(client) {
+  bySquare: any;
+  client: any;
+  constructor(client: any) {
     this.client = client;
     this.bySquare = new BySquare(client);
   }

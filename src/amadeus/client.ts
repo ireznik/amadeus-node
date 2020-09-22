@@ -1,5 +1,8 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'events' or its corresponding t... Remove this comment to see the full error message
 import EventEmitter from 'events';
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/bluebird` if it exists or ... Remove this comment to see the full error message
 import Promise      from 'bluebird';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'util' or its corresponding typ... Remove this comment to see the full error message
 import util         from 'util';
 
 import AccessToken from './client/access_token';
@@ -7,6 +10,7 @@ import Listener    from './client/listener';
 import Request     from './client/request';
 import Validator   from './client/validator';
 
+// @ts-expect-error ts-migrate(2732) FIXME: Cannot find module '../../package.json'. Consider ... Remove this comment to see the full error message
 import pkg         from '../../package.json';
 
 /**
@@ -43,8 +47,19 @@ import pkg         from '../../package.json';
  * @property {number} version The version of this API client
  */
 class Client {
+  accessToken: any;
+  customAppId: any;
+  customAppVersion: any;
+  host: any;
+  http: any;
+  logLevel: any;
+  logger: any;
+  port: any;
+  ssl: any;
+  version: any;
   constructor(options = {}) {
     new Validator().validateAndInitialize(this, options);
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
     this.accessToken = new AccessToken(this);
     this.version = pkg.version;
   }
@@ -59,7 +74,7 @@ class Client {
    * @param {Object} [params={}] the query string parameters
    * @return {Promise.<Response,ResponseError>} a Promise
    */
-  get(path, params = {}) {
+  get(path: any, params = {}) {
     return this.request('GET', path, params);
   }
 
@@ -73,7 +88,7 @@ class Client {
    * @param {Object} [params={}] the POST parameters
    * @return {Promise.<Response,ResponseError>} a Promise
    */
-  post(path, params = {}) {
+  post(path: any, params = {}) {
     return this.request('POST', path, params);
   }
 
@@ -87,7 +102,7 @@ class Client {
    * @param {Object} [params={}] the query string parameters
    * @return {Promise.<Response,ResponseError>} a Promise
    */
-  delete(path, params = {}) {
+  delete(path: any, params = {}) {
     return this.request('DELETE', path, params);
   }
 
@@ -105,8 +120,8 @@ class Client {
    * @return {Promise.<Response,ResponseError>} a Promise
    * @protected
    */
-  request(verb, path, params = {}) {
-    return this.accessToken.bearerToken(this).then((bearerToken) => {
+  request(verb: any, path: any, params = {}) {
+    return this.accessToken.bearerToken(this).then((bearerToken: any) => {
       return this.unauthenticatedRequest(verb, path, params, bearerToken);
     });
   }
@@ -129,7 +144,7 @@ class Client {
    * @return {Promise.<Response,ResponseError>} a Promise
    * @private
    */
-  unauthenticatedRequest(verb, path, params, bearerToken = null) {
+  unauthenticatedRequest(verb: any, path: any, params: any, bearerToken = null) {
     let request = this.buildRequest(verb, path, params, bearerToken);
     this.log(request);
     let emitter = new EventEmitter();
@@ -146,7 +161,7 @@ class Client {
    * @param {EventEmitter} emitter the event emitter to notify of changes
    * @private
    */
-  execute(request, emitter) {
+  execute(request: any, emitter: any) {
     let http_request = this.http.request(request.options());
     let listener = new Listener(request, emitter, this);
     http_request.on('response', listener.onResponse.bind(listener));
@@ -166,7 +181,7 @@ class Client {
    * @return {Request}
    * @private
    */
-  buildRequest(verb, path, params, bearerToken) {
+  buildRequest(verb: any, path: any, params: any, bearerToken: any) {
     return new Request({
       host: this.host,
       verb: verb,
@@ -174,6 +189,7 @@ class Client {
       params: params,
       bearerToken: bearerToken,
       clientVersion: this.version,
+      // @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
       languageVersion: process.version,
       appId: this.customAppId,
       appVersion: this.customAppVersion,
@@ -189,10 +205,10 @@ class Client {
    * @return {Promise} a Bluebird promise
    * @private
    */
-  buildPromise(emitter) {
-    return new Promise((resolve, reject) => {
-      emitter.on('resolve', response => resolve(response));
-      emitter.on('reject', error => reject(error));
+  buildPromise(emitter: any) {
+    return new Promise((resolve: any, reject: any) => {
+      emitter.on('resolve', (response: any) => resolve(response));
+      emitter.on('reject', (error: any) => reject(error));
     });
   }
 
@@ -203,7 +219,7 @@ class Client {
    * @param  {Request} request the request object to log
    * @private
    */
-  log(request) {
+  log(request: any) {
     /* istanbul ignore next */
     if(this.debug()) { this.logger.log(util.inspect(request, false, null)); }
   }

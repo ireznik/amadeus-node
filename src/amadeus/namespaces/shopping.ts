@@ -30,7 +30,15 @@ import HotelOffer         from './shopping/hotel_offer';
  * @property {HotelOffersByHotel} hotelOffersByHotel
  */
 class Shopping {
-  constructor(client) {
+  client: any;
+  flightDates: any;
+  flightDestinations: any;
+  flightOffers: any;
+  flightOffersSearch: any;
+  hotelOffers: any;
+  hotelOffersByHotel: any;
+  seatmaps: any;
+  constructor(client: any) {
     this.client             = client;
     this.flightDestinations = new FlightDestinations(client);
     this.flightOffers       = new FlightOffers(client);
@@ -48,7 +56,7 @@ class Shopping {
    * @param  {string} [offerId]  The ID of the offer for a dedicated hotel
    * @return {HotelOffer}
    **/
-  hotelOffer(offerId) {
+  hotelOffer(offerId: any) {
     return new HotelOffer(this.client, offerId);
   }
 }

@@ -16,12 +16,14 @@ import SafetyRatedLocation from './safety/safety_rated_location';
  * @property {SafetyRatedLocations} safetyRatedLocations
  */
 class Safety {
-  constructor(client) {
+  client: any;
+  safetyRatedLocations: any;
+  constructor(client: any) {
     this.client = client;
     this.safetyRatedLocations = new SafetyRatedLocations(client);
   }
 
-  safetyRatedLocation(locationId) {
+  safetyRatedLocation(locationId: any) {
     return new SafetyRatedLocation(this.client, locationId);
   }
 }

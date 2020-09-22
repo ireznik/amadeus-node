@@ -12,7 +12,9 @@
  *  from the  {@link Response}'s parsed data
  */
 export class ResponseError {
-  constructor(response) {
+  description: any;
+  response: any;
+  constructor(response: any) {
     this.response = response;
     this.determineDescription();
   }
@@ -34,49 +36,70 @@ export class ResponseError {
 // Protected
 
 export class NetworkError extends ResponseError {
+  code: any;
+  // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'args' implicitly has an 'any[]' ty... Remove this comment to see the full error message
   constructor(...args) {
+    // @ts-expect-error ts-migrate(2556) FIXME: Expected 1 arguments, but got 0 or more.
     super(...args);
     this.code = 'NetworkError';
   }
 }
 
 export class ParserError extends ResponseError {
+  code: any;
+  // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'args' implicitly has an 'any[]' ty... Remove this comment to see the full error message
   constructor(...args) {
+    // @ts-expect-error ts-migrate(2556) FIXME: Expected 1 arguments, but got 0 or more.
     super(...args);
     this.code = 'ParserError';
   }
 }
 
 export class ServerError extends ResponseError {
+  code: any;
+  // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'args' implicitly has an 'any[]' ty... Remove this comment to see the full error message
   constructor(...args) {
+    // @ts-expect-error ts-migrate(2556) FIXME: Expected 1 arguments, but got 0 or more.
     super(...args);
     this.code = 'ServerError';
   }
 }
 
 export class ClientError extends ResponseError {
+  code: any;
+  // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'args' implicitly has an 'any[]' ty... Remove this comment to see the full error message
   constructor(...args) {
+    // @ts-expect-error ts-migrate(2556) FIXME: Expected 1 arguments, but got 0 or more.
     super(...args);
     this.code = 'ClientError';
   }
 }
 
 export class AuthenticationError extends ResponseError {
+  code: any;
+  // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'args' implicitly has an 'any[]' ty... Remove this comment to see the full error message
   constructor(...args) {
+    // @ts-expect-error ts-migrate(2556) FIXME: Expected 1 arguments, but got 0 or more.
     super(...args);
     this.code = 'AuthenticationError';
   }
 }
 
 export class NotFoundError extends ResponseError {
+  code: any;
+  // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'args' implicitly has an 'any[]' ty... Remove this comment to see the full error message
   constructor(...args) {
+    // @ts-expect-error ts-migrate(2556) FIXME: Expected 1 arguments, but got 0 or more.
     super(...args);
     this.code = 'NotFoundError';
   }
 }
 
 export class UnknownError extends ResponseError {
+  code: any;
+  // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'args' implicitly has an 'any[]' ty... Remove this comment to see the full error message
   constructor(...args) {
+    // @ts-expect-error ts-migrate(2556) FIXME: Expected 1 arguments, but got 0 or more.
     super(...args);
     this.code = 'UnknownError';
   }

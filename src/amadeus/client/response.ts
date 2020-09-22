@@ -16,7 +16,14 @@ let JSON_CONTENT_TYPES = ['application/json', 'application/vnd.amadeus+json'];
  *
  */
 class Response {
-  constructor(http_response, request) {
+  body: any;
+  data: any;
+  headers: any;
+  parsed: any;
+  request: any;
+  result: any;
+  statusCode: any;
+  constructor(http_response: any, request: any) {
     this.headers = http_response.headers || {};
     this.statusCode  = http_response.statusCode;
     this.request     = request;
@@ -34,7 +41,7 @@ class Response {
    * @param  {string} chunk a chunk of data
    * @protected
    */
-  addChunk(chunk) {
+  addChunk(chunk: any) {
     this.body += chunk;
   }
 

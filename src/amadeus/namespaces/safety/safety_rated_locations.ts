@@ -14,7 +14,9 @@ import BySquare from './safety_rated_locations/by_square';
  * @param {Client} client
  */
 class SafetyRatedLocations {
-  constructor(client) {
+  bySquare: any;
+  client: any;
+  constructor(client: any) {
     this.client = client;
     this.bySquare = new BySquare(client);
   }

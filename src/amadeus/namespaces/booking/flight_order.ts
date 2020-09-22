@@ -12,7 +12,9 @@
  * @param {Client} client
  */
 class FlightOrder {
-  constructor(client, orderId) {
+  _orderId: any;
+  client: any;
+  constructor(client: any, orderId: any) {
     this.client = client;
     this._orderId = orderId;
   }

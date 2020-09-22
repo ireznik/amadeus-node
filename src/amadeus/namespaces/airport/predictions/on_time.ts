@@ -12,7 +12,8 @@
  * @param {Client} client
  */
 class OnTime {
-  constructor(client) {
+  client: any;
+  constructor(client: any) {
     this.client = client;
   }
 

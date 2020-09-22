@@ -12,7 +12,9 @@
  * @param {Client} client
  */
 class Result {
-  constructor(client, jobId) {
+  _jobId: any;
+  client: any;
+  constructor(client: any, jobId: any) {
     this.client = client;
     this._jobId = jobId;
   }

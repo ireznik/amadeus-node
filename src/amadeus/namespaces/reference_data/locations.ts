@@ -17,7 +17,10 @@ import PointsOfInterest from './locations/pois';
  * @property {Airports} airports
  */
 class Locations {
-  constructor(client) {
+  airports: any;
+  client: any;
+  pointsOfInterest: any;
+  constructor(client: any) {
     this.client = client;
     this.airports = new Airports(client);
     this.pointsOfInterest = new PointsOfInterest(client);
@@ -45,10 +48,9 @@ class Locations {
     return this.client.get('/v1/reference-data/locations', params);
   }
 
-  pointOfInterest(poiId) {
+  pointOfInterest(poiId: any) {
     return new PointOfInterest(this.client, poiId);
   }
-
 }
 
 export default Locations;

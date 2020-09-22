@@ -20,7 +20,12 @@ import RecommendedLocations from './reference_data/recommended_locations';
  * @protected
  */
 class ReferenceData {
-  constructor(client) {
+  airlines: any;
+  client: any;
+  locations: any;
+  recommendedLocations: any;
+  urls: any;
+  constructor(client: any) {
     this.client    = client;
     this.urls      = new Urls(client);
     this.locations = new Locations(client);
@@ -34,7 +39,7 @@ class ReferenceData {
    * @param  {string} [locationId]  The ID of the location to search for
    * @return {Location}
    **/
-  location(locationId) {
+  location(locationId: any) {
     return new Location(this.client, locationId);
   }
 }

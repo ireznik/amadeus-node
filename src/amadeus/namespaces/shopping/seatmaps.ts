@@ -13,7 +13,8 @@
  * @param {Client} client
  */
 class Seatmaps {
-  constructor(client) {
+  client: any;
+  constructor(client: any) {
     this.client = client;
   }
 
@@ -61,7 +62,6 @@ class Seatmaps {
   post(params = {}) {
     return this.client.post('/v1/shopping/seatmaps', params);
   }
-
 }
 
 export default Seatmaps;

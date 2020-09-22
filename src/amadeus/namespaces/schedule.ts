@@ -16,7 +16,9 @@ import Flights from './schedule/flights';
  * @protected
  */
 class Schedule {
-  constructor(client) {
+  client: any;
+  flights: any;
+  constructor(client: any) {
     this.client = client;
     this.flights = new Flights(client);
   }
